@@ -1,0 +1,43 @@
+<body>
+    <label for="password">Password:</label>
+    <input type="password" id="passwordInput">
+    <button onclick="validatePassword()">Validate</button>
+    <div id="validationResult"></div>
+
+    <script>
+        function validatePassword() {
+            const passwordInput = document.getElementById("passwordInput");
+            const password = passwordInput.value;
+
+            let length = password.length;
+            let isValidLength = length >= 6 && length <= 10;
+            let isValidString = /^[a-zA-Z0-9]+$/.test(password);
+            let onlyTwoDigits = /^(?=.*\d.*\d)[a-zA-Z0-9]+$/.test(password);
+
+            let validationResult = document.getElementById("validationResult");
+            validationResult.innerHTML = "";
+
+            if (isValidString && onlyTwoDigits && isValidLength) {
+                validationResult.textContent = "Password is valid";
+                validationResult.classList.add("valid");
+                validationResult.classList.remove("invalid");
+            } else {
+                if (!isValidLength) {
+                    validationResult.innerHTML += "Password must be between 6 and 10 characters<br>";
+                }
+
+                if (!isValidString) {
+                    validationResult.innerHTML += "Password must consist only of letters and digits<br>";
+                }
+
+                if (!onlyTwoDigits) {
+                    validationResult.innerHTML += "Password must have at least 2 digits<br>";
+                }
+
+                validationResult.classList.add("invalid");
+                validationResult.classList.remove("valid");
+            }
+        }
+    </script>
+</body>
+</html>
