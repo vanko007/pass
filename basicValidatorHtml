@@ -1,6 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Basic Password Validator</title>
+    <style>
+        .valid {
+            color: green;
+        }
+
+        .invalid {
+            color: red;
+        }
+    </style>
+</head>
 <body>
+    <h1>Basic Password Validator</h1>
+
     <label for="password">Password:</label>
     <input type="password" id="passwordInput">
+    <input type="checkbox" id="showPasswordCheckbox">
+    <label for="showPasswordCheckbox">Show Password</label>
     <button onclick="validatePassword()">Validate</button>
     <div id="validationResult"></div>
 
@@ -38,6 +57,17 @@
                 validationResult.classList.remove("valid");
             }
         }
+
+        const passwordInput = document.getElementById("passwordInput");
+        const showPasswordCheckbox = document.getElementById("showPasswordCheckbox");
+
+        showPasswordCheckbox.addEventListener("change", function () {
+            if (showPasswordCheckbox.checked) {
+                passwordInput.type = "text";
+            } else {
+                passwordInput.type = "password";
+            }
+        });
     </script>
 </body>
 </html>
