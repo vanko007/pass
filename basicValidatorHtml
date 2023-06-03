@@ -3,25 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <title>Basic Password Validator</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
-        .valid {
-            color: green;
+        body {
+            background-color: #f0f0f0;
+            font-family: 'Arial', sans-serif;
         }
 
-        .invalid {
-            color: red;
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .password-input {
+            width: 94%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .validation-result {
+            margin-top: 20px;
+            padding: 10px;
+            color: #000000;
+            font-size: 16px;
+            text-align: center;
+        }
+
+            .validation-result.valid {
+                background-color: #00618c;
+            }
+
+            .validation-result.invalid {
+                background-color: #f44336;
+            }
     </style>
 </head>
 <body>
     <h1>Basic Password Validator</h1>
 
-    <label for="password">Password:</label>
-    <input type="password" id="passwordInput">
-    <input type="checkbox" id="showPasswordCheckbox">
-    <label for="showPasswordCheckbox">Show Password</label>
-    <button onclick="validatePassword()">Validate</button>
-    <div id="validationResult"></div>
+    <div class="container">
+        <form onsubmit="event.preventDefault(); validatePassword();">
+            <label for="password">Password:</label>
+            <input type="password" id="passwordInput" class="password-input">
+            <button type="submit">Validate</button>
+            <div id="validationResult" class="validation-result"></div>
+        </form>
+    </div>
 
     <script>
         function validatePassword() {
@@ -57,17 +117,8 @@
                 validationResult.classList.remove("valid");
             }
         }
-
-        const passwordInput = document.getElementById("passwordInput");
-        const showPasswordCheckbox = document.getElementById("showPasswordCheckbox");
-
-        showPasswordCheckbox.addEventListener("change", function () {
-            if (showPasswordCheckbox.checked) {
-                passwordInput.type = "text";
-            } else {
-                passwordInput.type = "password";
-            }
-        });
     </script>
 </body>
 </html>
+
+
